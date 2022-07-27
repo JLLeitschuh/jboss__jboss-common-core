@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 
 import junit.framework.TestCase;
 
@@ -95,11 +96,9 @@ public class FileURLConnectionTestCase extends TestCase
       //   TMPDIR/testDirectoryList39558
       //   TMPDIR/testDirectoryList39558/test.txt
       //   TMPDIR/testDirectoryList39558/test.dir
-      File rootDir = File.createTempFile("testDirectoryList", "");
+      File rootDir = Files.createTempDirectory("testDirectoryList").toFile();
       try
       {
-         rootDir.delete();
-         rootDir.mkdir();
          System.out.println(rootDir);
          File tmpFile = new File(rootDir, "test.txt");
          tmpFile.createNewFile();
